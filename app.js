@@ -1,52 +1,66 @@
-// Add Event listners when DOM is ready
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    // check for buttons exist
-    if ( document.querySelectorAll('.button') !== null) {
-        let buttons = document.querySelectorAll('.button');
-        buttons.forEach(button => button.addEventListener('click', processForm))
-    }
+  
+  if (document.querySelectorAll('.button') !== null) {
+    let buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => button.addEventListener('click', processForm))
+  }
 
-    // optionally update when fields update
-    // tbd
-    document.getElementById('name').addEventListener('change', function (e) {
-      let nameElement = document.getElementById('nameTag');
-      nameElement.innerText = e.target.value;
-    });
+ 
+  document.getElementById('name').addEventListener('change', function (e) {
+    let nameElement = document.getElementById('nameTag');
+    nameElement.innerText = e.target.value;
+  });
 
-    document.getElementById('type').addEventListener('change', function (e) {
-      let infoElement = document.getElementById('info');
-      infoElement.innerText = e.target.value;
-    });
+  document.getElementById('type').addEventListener('change', function (e) {
+    let infoElement = document.getElementById('info');
+    infoElement.innerText = e.target.value;
+  });
 
-    // process form Data
-    document.getElementById("myForm").addEventListener("submit", function (e) {
-        e.preventDefault();
 
-        console.log(e.target);
-      
-        var formData = new FormData(e.target);
-        formData = Object.fromEntries(formData);
+  document.getElementById("myForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        // output as an object
-       
-      
-        // ...or iterate through the name-value pairs
-        // for (var pair of formData.entries()) {
-        //   console.log(pair[0] + ": " + pair[1]);
-        // }
+    console.log(e.target);
 
-        let nameElement = document.getElementById('nameTag');
-        let textElement =document.getElementById('info');
+    var formData = new FormData(e.target);
+    formData = Object.fromEntries(formData);
 
-        nameElement.innerText = formData.name;
-        textElement.innerText = formData.type;
+    let nameElement = document.getElementById('nameTag');
+    let textElement = document.getElementById('info');
 
-      });
-    // Log readiness to console
-    console.log("Ready");
+    nameElement.innerText = formData.name;
+    textElement.innerText = formData.type;
+
+  });
+  
+  console.log("Ready");
 });
 
-function processForm(form){
+function processForm(form) {
 
 }
+
+function changeCert(value) {
+  let certificate = document.getElementById('certificate');
+  certificate.classList = "";
+  switch (value) {
+    case 'A':
+      certificate.classList.add('number1');
+      break;
+    case 'B':
+      certificate.classList.add('number2');
+      break;
+    case 'C':
+      certificate.classList.add('number3');
+      break;
+    case 'D':
+      certificate.classList.add('number4');
+      break;
+  }
+}
+
+let theDate = new Date().toLocaleDateString
+  ('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
+let dateBox = document.getElementById('theDate');
